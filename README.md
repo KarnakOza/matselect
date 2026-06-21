@@ -4,7 +4,7 @@
 
 Engineers selecting structural materials for rocket propulsion hardware balance strength, temperature capability, thermal conductivity, weldability, manufacturability, and flight heritage — usually in a spreadsheet, ad hoc, at the start of a program. MatSelect formalises that trade study into an interactive tool.
 
-[Live demo link — add after deployment]
+[https://matselect.streamlit.app/]
 
 ## What it does
 
