@@ -2,377 +2,543 @@
 MatSelect — Materials Database for Propulsion Hardware
 Real measured properties from published sources.
 Every number is defensible and cited.
+v2 — expanded to 18 materials
 """
-
+ 
 MATERIALS = [
     {
         "id": "IN718",
         "name": "Inconel 718",
         "category": "nickel_superalloy",
-
-        # Mechanical properties at room temp
         "yield_strength_MPa": 1100,
         "ultimate_strength_MPa": 1375,
         "elongation_pct": 12,
         "hardness_HV": 390,
-
-        # High temperature performance
-        "max_service_temp_K": 923,       # ~650°C continuous
+        "max_service_temp_K": 923,
+        "min_service_temp_K": 4,
         "melting_point_K": 1609,
-        "creep_rupture_temp_K": 923,     # temp at which creep becomes critical
-
-        # Thermal properties
-        "thermal_conductivity_Wm K": 11.4,
+        "creep_rupture_temp_K": 923,
+        "thermal_conductivity_WmK": 11.4,
         "thermal_expansion_1e6_K": 13.0,
         "specific_heat_J_kgK": 435,
-
-        # Physical
         "density_kgm3": 8190,
-
-        # Weldability & manufacturing
-        "weldability": 3,               # 1=excellent, 5=very difficult
-        "machinability": 2,             # 1=easy, 5=very hard
-        "AM_compatible": True,          # additive manufacturing
-
-        # Propulsion relevance
-        "oxidation_resistance": 4,      # 1=poor, 5=excellent
+        "weldability": 3,
+        "machinability": 2,
+        "AM_compatible": True,
+        "oxidation_resistance": 4,
         "cryogenic_compatible": False,
         "hydrogen_embrittlement_risk": True,
-        "cost_index": 4,                # 1=cheap, 5=expensive
+        "cost_index": 4,
         "trl_propulsion": 9,
-
-        # Where it's actually used
-        "heritage": [
-            "Merlin turbopump", "RL-10 turbopump", "F-1 turbopump",
-            "RD-180 turbopump", "most modern turbopump discs and shafts"
-        ],
-        "typical_components": [
-            "turbopump discs", "shafts", "impellers",
-            "combustion chamber cases", "injector bodies"
-        ],
-
-        "source": "AMS 5664; NASA-TM-2013-217454; Aerospace Structural Metals Handbook"
+        "heritage": ["Merlin turbopump", "RL-10 turbopump", "F-1 turbopump", "RD-180 turbopump"],
+        "typical_components": ["turbopump discs", "shafts", "impellers", "combustion chamber cases"],
+        "source": "AMS 5664; NASA-TM-2013-217454"
+    },
+    {
+        "id": "IN625",
+        "name": "Inconel 625",
+        "category": "nickel_superalloy",
+        "yield_strength_MPa": 490,
+        "ultimate_strength_MPa": 930,
+        "elongation_pct": 42,
+        "hardness_HV": 210,
+        "max_service_temp_K": 1173,
+        "min_service_temp_K": 4,
+        "melting_point_K": 1623,
+        "creep_rupture_temp_K": 923,
+        "thermal_conductivity_WmK": 9.8,
+        "thermal_expansion_1e6_K": 12.8,
+        "specific_heat_J_kgK": 410,
+        "density_kgm3": 8440,
+        "weldability": 1,
+        "machinability": 2,
+        "AM_compatible": True,
+        "oxidation_resistance": 5,
+        "cryogenic_compatible": True,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 4,
+        "trl_propulsion": 9,
+        "heritage": ["pressure vessel cladding", "exhaust ducting", "RS-25 flex joints"],
+        "typical_components": ["welded pressure vessels", "exhaust ducts", "bellows", "flex joints"],
+        "source": "AMS 5599; Special Metals IN625 datasheet"
+    },
+    {
+        "id": "WASPALOY",
+        "name": "Waspaloy",
+        "category": "nickel_superalloy",
+        "yield_strength_MPa": 795,
+        "ultimate_strength_MPa": 1275,
+        "elongation_pct": 25,
+        "hardness_HV": 350,
+        "max_service_temp_K": 1088,
+        "min_service_temp_K": 77,
+        "melting_point_K": 1603,
+        "creep_rupture_temp_K": 1033,
+        "thermal_conductivity_WmK": 10.6,
+        "thermal_expansion_1e6_K": 12.9,
+        "specific_heat_J_kgK": 397,
+        "density_kgm3": 8190,
+        "weldability": 3,
+        "machinability": 3,
+        "AM_compatible": False,
+        "oxidation_resistance": 4,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 5,
+        "trl_propulsion": 8,
+        "heritage": ["gas turbine discs", "turbopump impellers", "hot section rotating parts"],
+        "typical_components": ["turbopump impeller discs", "hot section rotating components"],
+        "source": "AMS 5544; Carpenter Technology Waspaloy datasheet"
+    },
+    {
+        "id": "RENE41",
+        "name": "René 41",
+        "category": "nickel_superalloy",
+        "yield_strength_MPa": 900,
+        "ultimate_strength_MPa": 1420,
+        "elongation_pct": 14,
+        "hardness_HV": 380,
+        "max_service_temp_K": 1144,
+        "min_service_temp_K": 77,
+        "melting_point_K": 1621,
+        "creep_rupture_temp_K": 1088,
+        "thermal_conductivity_WmK": 9.1,
+        "thermal_expansion_1e6_K": 13.0,
+        "specific_heat_J_kgK": 418,
+        "density_kgm3": 8250,
+        "weldability": 4,
+        "machinability": 3,
+        "AM_compatible": False,
+        "oxidation_resistance": 4,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 5,
+        "trl_propulsion": 8,
+        "heritage": ["Space Shuttle main engine hot section", "X-15 engine components"],
+        "typical_components": ["gas generator liners", "turbine housings", "hot section components"],
+        "source": "AMS 5545; NASA-TM-X-53001"
     },
     {
         "id": "GRCOP42",
         "name": "GRCop-42 (Cu-Cr-Nb)",
         "category": "copper_alloy",
-
         "yield_strength_MPa": 255,
         "ultimate_strength_MPa": 310,
         "elongation_pct": 28,
         "hardness_HV": 90,
-
         "max_service_temp_K": 773,
+        "min_service_temp_K": 4,
         "melting_point_K": 1338,
         "creep_rupture_temp_K": 773,
-
-        # Key advantage — highest thermal conductivity of any propulsion alloy
-        "thermal_conductivity_Wm K": 320,
+        "thermal_conductivity_WmK": 320,
         "thermal_expansion_1e6_K": 17.0,
         "specific_heat_J_kgK": 386,
-
         "density_kgm3": 8900,
-
         "weldability": 3,
         "machinability": 3,
-        "AM_compatible": True,          # developed for SLM at NASA GRC
-
+        "AM_compatible": True,
         "oxidation_resistance": 2,
         "cryogenic_compatible": True,
         "hydrogen_embrittlement_risk": False,
         "cost_index": 4,
         "trl_propulsion": 7,
-
-        "heritage": [
-            "RS-25 chamber liner", "NASA SLM development program",
-            "Vulcain chamber liner concept"
-        ],
-        "typical_components": [
-            "combustion chamber liners",
-            "regenerative cooling channel walls",
-            "throat inserts"
-        ],
-
+        "heritage": ["RS-25 chamber liner", "NASA SLM development program"],
+        "typical_components": ["combustion chamber liners", "regenerative cooling channel walls", "throat inserts"],
         "source": "NASA TM-2017-219439; NASA GRC GRCop-42 development program"
+    },
+    {
+        "id": "CUBE",
+        "name": "Copper-Beryllium (C17200)",
+        "category": "copper_alloy",
+        "yield_strength_MPa": 1100,
+        "ultimate_strength_MPa": 1210,
+        "elongation_pct": 3,
+        "hardness_HV": 380,
+        "max_service_temp_K": 473,
+        "min_service_temp_K": 4,
+        "melting_point_K": 1173,
+        "creep_rupture_temp_K": 423,
+        "thermal_conductivity_WmK": 130,
+        "thermal_expansion_1e6_K": 17.8,
+        "specific_heat_J_kgK": 419,
+        "density_kgm3": 8250,
+        "weldability": 4,
+        "machinability": 2,
+        "AM_compatible": False,
+        "oxidation_resistance": 2,
+        "cryogenic_compatible": True,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 4,
+        "trl_propulsion": 8,
+        "heritage": ["injector faceplates", "valve seats", "precision components"],
+        "typical_components": ["injector bodies", "valve seats", "precision electrical connectors"],
+        "source": "AMS 4650; Materion C17200 datasheet"
     },
     {
         "id": "TI6AL4V",
         "name": "Ti-6Al-4V",
         "category": "titanium_alloy",
-
         "yield_strength_MPa": 880,
         "ultimate_strength_MPa": 950,
         "elongation_pct": 14,
         "hardness_HV": 320,
-
-        "max_service_temp_K": 573,       # ~300°C limit
+        "max_service_temp_K": 573,
+        "min_service_temp_K": 4,
         "melting_point_K": 1933,
         "creep_rupture_temp_K": 573,
-
-        "thermal_conductivity_Wm K": 6.7,
+        "thermal_conductivity_WmK": 6.7,
         "thermal_expansion_1e6_K": 8.6,
         "specific_heat_J_kgK": 526,
-
-        "density_kgm3": 4430,            # Key advantage — lowest density here
-
+        "density_kgm3": 4430,
         "weldability": 2,
         "machinability": 3,
         "AM_compatible": True,
-
         "oxidation_resistance": 3,
         "cryogenic_compatible": True,
         "hydrogen_embrittlement_risk": True,
         "cost_index": 3,
         "trl_propulsion": 9,
-
-        "heritage": [
-            "Saturn V propellant lines", "Space Shuttle propellant ducting",
-            "most spacecraft propellant tanks", "pressure vessels"
-        ],
-        "typical_components": [
-            "propellant tanks", "pressure vessels",
-            "structural brackets", "feed lines", "valve bodies"
-        ],
-
+        "heritage": ["Saturn V propellant lines", "Space Shuttle ducting", "most spacecraft propellant tanks"],
+        "typical_components": ["propellant tanks", "pressure vessels", "structural brackets", "feed lines"],
         "source": "AMS 4928; MIL-T-9046; NASA-STD-6008"
+    },
+    {
+        "id": "TI6242",
+        "name": "Ti-6Al-2Sn-4Zr-2Mo",
+        "category": "titanium_alloy",
+        "yield_strength_MPa": 990,
+        "ultimate_strength_MPa": 1050,
+        "elongation_pct": 10,
+        "hardness_HV": 340,
+        "max_service_temp_K": 723,
+        "min_service_temp_K": 77,
+        "melting_point_K": 1943,
+        "creep_rupture_temp_K": 723,
+        "thermal_conductivity_WmK": 6.0,
+        "thermal_expansion_1e6_K": 9.5,
+        "specific_heat_J_kgK": 502,
+        "density_kgm3": 4540,
+        "weldability": 3,
+        "machinability": 3,
+        "AM_compatible": False,
+        "oxidation_resistance": 3,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": True,
+        "cost_index": 4,
+        "trl_propulsion": 8,
+        "heritage": ["turbopump housings", "high-temperature titanium applications"],
+        "typical_components": ["turbopump housings", "compressor discs", "elevated temperature structures"],
+        "source": "AMS 4919; NASA-TM-2003-212531"
     },
     {
         "id": "SS304L",
         "name": "304L Stainless Steel",
         "category": "stainless_steel",
-
         "yield_strength_MPa": 170,
         "ultimate_strength_MPa": 485,
         "elongation_pct": 40,
         "hardness_HV": 160,
-
         "max_service_temp_K": 1173,
+        "min_service_temp_K": 4,
         "melting_point_K": 1723,
         "creep_rupture_temp_K": 873,
-
-        "thermal_conductivity_Wm K": 16.2,
+        "thermal_conductivity_WmK": 16.2,
         "thermal_expansion_1e6_K": 17.2,
         "specific_heat_J_kgK": 500,
-
         "density_kgm3": 7900,
-
-        "weldability": 1,               # Excellent — L grade minimises sensitisation
+        "weldability": 1,
         "machinability": 2,
         "AM_compatible": True,
-
         "oxidation_resistance": 3,
-        "cryogenic_compatible": True,   # Key use case — LOX/LH2 compatible
+        "cryogenic_compatible": True,
         "hydrogen_embrittlement_risk": False,
         "cost_index": 1,
         "trl_propulsion": 9,
-
-        "heritage": [
-            "propellant feed lines", "LOX/LH2 tankage",
-            "cryogenic plumbing", "test stand hardware"
-        ],
-        "typical_components": [
-            "cryogenic propellant lines", "low-pressure tankage",
-            "test hardware", "support structures"
-        ],
-
-        "source": "ASTM A240; NASA-HDBK-6001; Cryogenic Materials Data Handbook"
+        "heritage": ["propellant feed lines", "LOX/LH2 tankage", "cryogenic plumbing"],
+        "typical_components": ["cryogenic propellant lines", "low-pressure tankage", "test hardware"],
+        "source": "ASTM A240; NASA-HDBK-6001"
+    },
+    {
+        "id": "SS15_5PH",
+        "name": "15-5PH Stainless Steel",
+        "category": "stainless_steel",
+        "yield_strength_MPa": 1170,
+        "ultimate_strength_MPa": 1310,
+        "elongation_pct": 10,
+        "hardness_HV": 390,
+        "max_service_temp_K": 589,
+        "min_service_temp_K": 77,
+        "melting_point_K": 1698,
+        "creep_rupture_temp_K": 589,
+        "thermal_conductivity_WmK": 18.4,
+        "thermal_expansion_1e6_K": 10.8,
+        "specific_heat_J_kgK": 460,
+        "density_kgm3": 7780,
+        "weldability": 2,
+        "machinability": 2,
+        "AM_compatible": True,
+        "oxidation_resistance": 3,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 2,
+        "trl_propulsion": 9,
+        "heritage": ["valve bodies", "actuator components", "turbopump housings"],
+        "typical_components": ["valve bodies", "fittings", "actuator housings", "structural brackets"],
+        "source": "AMS 5659; NASA-STD-6008"
+    },
+    {
+        "id": "MARAGING300",
+        "name": "Maraging Steel 300",
+        "category": "stainless_steel",
+        "yield_strength_MPa": 2000,
+        "ultimate_strength_MPa": 2050,
+        "elongation_pct": 7,
+        "hardness_HV": 560,
+        "max_service_temp_K": 755,
+        "min_service_temp_K": 77,
+        "melting_point_K": 1686,
+        "creep_rupture_temp_K": 700,
+        "thermal_conductivity_WmK": 25.5,
+        "thermal_expansion_1e6_K": 10.2,
+        "specific_heat_J_kgK": 460,
+        "density_kgm3": 8000,
+        "weldability": 2,
+        "machinability": 2,
+        "AM_compatible": True,
+        "oxidation_resistance": 2,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": True,
+        "cost_index": 3,
+        "trl_propulsion": 8,
+        "heritage": ["turbopump cases", "high-strength rocket cases", "solid motor cases"],
+        "typical_components": ["turbopump cases", "solid motor cases", "high-load structural parts"],
+        "source": "AMS 6514; Carpenter Maraging 300 datasheet"
     },
     {
         "id": "HAYNES230",
         "name": "Haynes 230",
         "category": "nickel_superalloy",
-
         "yield_strength_MPa": 390,
         "ultimate_strength_MPa": 870,
         "elongation_pct": 48,
         "hardness_HV": 200,
-
-        "max_service_temp_K": 1173,      # ~900°C — highest here
+        "max_service_temp_K": 1173,
+        "min_service_temp_K": 77,
         "melting_point_K": 1644,
         "creep_rupture_temp_K": 1073,
-
-        "thermal_conductivity_Wm K": 8.9,
+        "thermal_conductivity_WmK": 8.9,
         "thermal_expansion_1e6_K": 12.7,
         "specific_heat_J_kgK": 397,
-
         "density_kgm3": 8970,
-
         "weldability": 2,
         "machinability": 3,
         "AM_compatible": False,
-
-        "oxidation_resistance": 5,      # Best oxidation resistance in this DB
+        "oxidation_resistance": 5,
         "cryogenic_compatible": False,
         "hydrogen_embrittlement_risk": False,
         "cost_index": 5,
         "trl_propulsion": 8,
-
-        "heritage": [
-            "RS-25 nozzle", "RL-10 nozzle", "combustion chamber hot sections",
-            "gas generator components"
-        ],
-        "typical_components": [
-            "nozzle sections", "hot gas manifolds",
-            "combustion chamber hot walls", "gas generator liners"
-        ],
-
+        "heritage": ["RS-25 nozzle", "RL-10 nozzle", "combustion chamber hot sections"],
+        "typical_components": ["nozzle sections", "hot gas manifolds", "combustion chamber hot walls"],
         "source": "Haynes International H-3170C; NASA-TM-2000-209941"
     },
     {
         "id": "AL2024T3",
         "name": "Aluminium 2024-T3",
         "category": "aluminium_alloy",
-
         "yield_strength_MPa": 345,
         "ultimate_strength_MPa": 483,
         "elongation_pct": 18,
         "hardness_HV": 130,
-
-        "max_service_temp_K": 423,       # ~150°C — significant limitation
+        "max_service_temp_K": 423,
+        "min_service_temp_K": 4,
         "melting_point_K": 911,
         "creep_rupture_temp_K": 373,
-
-        "thermal_conductivity_Wm K": 121,
+        "thermal_conductivity_WmK": 121,
         "thermal_expansion_1e6_K": 23.2,
         "specific_heat_J_kgK": 875,
-
-        "density_kgm3": 2780,            # Lowest density — structural advantage
-
-        "weldability": 4,               # Poor — hot cracking risk
-        "machinability": 1,             # Excellent
+        "density_kgm3": 2780,
+        "weldability": 4,
+        "machinability": 1,
         "AM_compatible": False,
-
         "oxidation_resistance": 2,
         "cryogenic_compatible": True,
         "hydrogen_embrittlement_risk": False,
         "cost_index": 1,
         "trl_propulsion": 9,
-
-        "heritage": [
-            "Saturn V structure", "Space Shuttle ET stringers",
-            "Falcon 9 interstage", "most launch vehicle structures"
-        ],
-        "typical_components": [
-            "structural frames", "interstages",
-            "low-pressure tankage walls", "fairing structures"
-        ],
-
-        "source": "MIL-HDBK-5J; AMS 2770; NASA-TM-1999-209260"
+        "heritage": ["Saturn V structure", "Space Shuttle ET", "Falcon 9 interstage"],
+        "typical_components": ["structural frames", "interstages", "low-pressure tankage walls"],
+        "source": "MIL-HDBK-5J; AMS 2770"
+    },
+    {
+        "id": "ALLI2195",
+        "name": "Al-Li 2195",
+        "category": "aluminium_alloy",
+        "yield_strength_MPa": 530,
+        "ultimate_strength_MPa": 560,
+        "elongation_pct": 11,
+        "hardness_HV": 175,
+        "max_service_temp_K": 423,
+        "min_service_temp_K": 20,
+        "melting_point_K": 916,
+        "creep_rupture_temp_K": 373,
+        "thermal_conductivity_WmK": 88,
+        "thermal_expansion_1e6_K": 21.0,
+        "specific_heat_J_kgK": 900,
+        "density_kgm3": 2710,
+        "weldability": 3,
+        "machinability": 2,
+        "AM_compatible": False,
+        "oxidation_resistance": 2,
+        "cryogenic_compatible": True,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 3,
+        "trl_propulsion": 8,
+        "heritage": ["Space Shuttle Super Lightweight Tank", "SLS core stage LOX/LH2 tanks"],
+        "typical_components": ["cryogenic propellant tanks", "LOX/LH2 tankage", "launch vehicle structure"],
+        "source": "NASA-TM-1999-209725; Lockheed Martin SLS core stage documentation"
     },
     {
         "id": "CFRP_IM7",
         "name": "CFRP (IM7/977-3)",
         "category": "composite",
-
-        "yield_strength_MPa": 0,         # composites don't yield — use UTS
-        "ultimate_strength_MPa": 2800,   # fibre direction
+        "yield_strength_MPa": 0,
+        "ultimate_strength_MPa": 2800,
         "elongation_pct": 1.5,
-        "hardness_HV": None,
-
+        "hardness_HV": 0,
         "max_service_temp_K": 423,
-        "melting_point_K": None,
+        "min_service_temp_K": 20,
+        "melting_point_K": 0,
         "creep_rupture_temp_K": 373,
-
-        "thermal_conductivity_Wm K": 5.0,
-        "thermal_expansion_1e6_K": 0.5,  # Near-zero CTE — dimensional stability
+        "thermal_conductivity_WmK": 5.0,
+        "thermal_expansion_1e6_K": 0.5,
         "specific_heat_J_kgK": 900,
-
-        "density_kgm3": 1550,            # Lowest density with highest strength
-
-        "weldability": 5,               # Cannot be welded
-        "machinability": 4,             # Abrasive — tool wear
+        "density_kgm3": 1550,
+        "weldability": 5,
+        "machinability": 4,
         "AM_compatible": False,
-
         "oxidation_resistance": 2,
         "cryogenic_compatible": True,
         "hydrogen_embrittlement_risk": False,
         "cost_index": 4,
         "trl_propulsion": 8,
-
-        "heritage": [
-            "Falcon 9 payload fairing", "Ariane 5 fairing",
-            "pressure vessels (COPV)", "nozzle exit cones"
-        ],
-        "typical_components": [
-            "payload fairings", "interstages",
-            "nozzle exit cones", "COPV overwrap", "skirts"
-        ],
-
+        "heritage": ["Falcon 9 payload fairing", "Ariane 5 fairing", "COPV overwrap"],
+        "typical_components": ["payload fairings", "interstages", "nozzle exit cones", "COPV overwrap"],
         "source": "Hexcel IM7 datasheet; NASA-CR-2004-213256"
     },
     {
         "id": "C103_NB",
         "name": "C-103 (Nb-Hf-Ti)",
         "category": "refractory_alloy",
-
         "yield_strength_MPa": 345,
         "ultimate_strength_MPa": 415,
         "elongation_pct": 25,
         "hardness_HV": 150,
-
-        "max_service_temp_K": 1644,      # ~1370°C — highest service temp here
+        "max_service_temp_K": 1644,
+        "min_service_temp_K": 77,
         "melting_point_K": 2741,
         "creep_rupture_temp_K": 1533,
-
-        "thermal_conductivity_Wm K": 52,
+        "thermal_conductivity_WmK": 52,
         "thermal_expansion_1e6_K": 7.1,
         "specific_heat_J_kgK": 272,
-
         "density_kgm3": 8850,
-
         "weldability": 2,
         "machinability": 3,
         "AM_compatible": False,
-
-        "oxidation_resistance": 2,       # Needs coating above 400°C
+        "oxidation_resistance": 2,
         "cryogenic_compatible": False,
         "hydrogen_embrittlement_risk": False,
         "cost_index": 5,
         "trl_propulsion": 8,
-
-        "heritage": [
-            "Apollo LM descent engine nozzle",
-            "Hydrazine thruster nozzles (standard)",
-            "attitude control thruster nozzles"
-        ],
-        "typical_components": [
-            "thruster nozzles", "attitude control nozzles",
-            "high-temperature nozzle extensions"
-        ],
-
+        "heritage": ["Apollo LM descent engine nozzle", "hydrazine thruster nozzles"],
+        "typical_components": ["thruster nozzles", "attitude control nozzles", "high-temp nozzle extensions"],
         "source": "Wah Chang C-103 datasheet; NASA-TM-X-2076"
+    },
+    {
+        "id": "NB_C752",
+        "name": "Niobium C-752",
+        "category": "refractory_alloy",
+        "yield_strength_MPa": 275,
+        "ultimate_strength_MPa": 380,
+        "elongation_pct": 30,
+        "hardness_HV": 130,
+        "max_service_temp_K": 1922,
+        "min_service_temp_K": 77,
+        "melting_point_K": 2750,
+        "creep_rupture_temp_K": 1700,
+        "thermal_conductivity_WmK": 47,
+        "thermal_expansion_1e6_K": 7.3,
+        "specific_heat_J_kgK": 268,
+        "density_kgm3": 8860,
+        "weldability": 2,
+        "machinability": 3,
+        "AM_compatible": False,
+        "oxidation_resistance": 1,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 5,
+        "trl_propulsion": 7,
+        "heritage": ["nozzle skirts", "nozzle extensions on upper stage engines"],
+        "typical_components": ["nozzle extensions", "skirts", "very high temp nozzle sections"],
+        "source": "Wah Chang C-752 datasheet; AIAA-2001-3270"
+    },
+    {
+        "id": "TUNGSTEN",
+        "name": "Tungsten (W, pure)",
+        "category": "refractory_alloy",
+        "yield_strength_MPa": 750,
+        "ultimate_strength_MPa": 980,
+        "elongation_pct": 2,
+        "hardness_HV": 350,
+        "max_service_temp_K": 2800,
+        "min_service_temp_K": 300,
+        "melting_point_K": 3695,
+        "creep_rupture_temp_K": 2500,
+        "thermal_conductivity_WmK": 173,
+        "thermal_expansion_1e6_K": 4.5,
+        "specific_heat_J_kgK": 134,
+        "density_kgm3": 19300,
+        "weldability": 5,
+        "machinability": 5,
+        "AM_compatible": False,
+        "oxidation_resistance": 1,
+        "cryogenic_compatible": False,
+        "hydrogen_embrittlement_risk": False,
+        "cost_index": 4,
+        "trl_propulsion": 8,
+        "heritage": ["solid rocket throat inserts", "arcjet electrodes", "resistojet components"],
+        "typical_components": ["throat inserts", "arcjet electrodes", "extreme-temp inserts"],
+        "source": "ASM Engineered Materials Handbook Vol 2; NASA-TM-2004-213309"
     }
 ]
+ 
 
 
-# --- Query helpers ---
+## Query helpers -----------
 
 def get_all():
     return MATERIALS
 
 def get_by_id(material_id):
     for m in MATERIALS:
-        if m["id"] == material_id:
+        if m["id"]  == material_id:
             return m
     return None
-
+    
 def get_by_category(category):
     return [m for m in MATERIALS if m["category"] == category]
 
 def get_cryogenic_compatible():
     return [m for m in MATERIALS if m["cryogenic_compatible"]]
 
-def get_by_max_temp(min_temp_K):
-    """Return materials that survive at least min_temp_K"""
+def get_by_temp(min_temp_K):
     return [m for m in MATERIALS if m["max_service_temp_K"] >= min_temp_K]
 
-
 if __name__ == "__main__":
-    print(f"MatSelect database: {len(MATERIALS)} materials loaded\n")
-    print(f"{'Name':<25} {'Category':<20} {'Yield MPa':<12} {'Max Temp K':<12} {'TRL'}")
-    print("-" * 80)
+    print(f"MatSelect database v2: {len(MATERIALS)} materials loaded\n")
+    print(f"{'Name':<30} {'Category':<20} {'Yield MPa':<12} {'Max Temp K':<12} {'TRL'}")
+    print("-" * 85)
     for m in MATERIALS:
-        print(f"{m['name']:<25} {m['category']:<20} "
+        print(f"{m['name']:<30} {m['category']:<20} "
               f"{m['yield_strength_MPa']:<12} {m['max_service_temp_K']:<12} "
               f"{m['trl_propulsion']}")
