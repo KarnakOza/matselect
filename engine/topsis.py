@@ -104,7 +104,7 @@ def run_topsis(materials, weights):
     criteria = [
         ("yield_strength_MPa",       "benefit", weights.get("w_yield", 1.0)),
         ("max_service_temp_K",        "benefit", weights.get("w_temp", 1.0)),
-        ("thermal_conductivity_Wm K", "benefit", weights.get("w_conductivity", 1.0)),
+        ("thermal_conductivity_WmK", "benefit", weights.get("w_conductivity", 1.0)),
         ("density_kgm3",              "cost",    weights.get("w_density", 1.0)),
         ("oxidation_resistance",      "benefit", weights.get("w_oxidation", 1.0)),
         ("weldability",               "cost",    weights.get("w_weldability", 1.0)),
@@ -210,10 +210,10 @@ def generate_reasoning(result, constraints, weights, eliminated):
         strengths.append(
             f"high yield strength ({m['yield_strength_MPa']} MPa)"
         )
-    if m["thermal_conductivity_Wm K"] > 100:
+    if m["thermal_conductivity_WmK"] > 100:
         strengths.append(
             f"very high thermal conductivity "
-            f"({m['thermal_conductivity_Wm K']} W/mK) — "
+            f"({m['thermal_conductivity_WmK']} W/mK) — "
             f"effective for regenerative cooling"
         )
     if m["oxidation_resistance"] >= 4:
